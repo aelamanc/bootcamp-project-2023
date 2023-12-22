@@ -1,25 +1,46 @@
 import Image from 'next/image';
 import React from 'react';
 import Link from 'next/link';
+import ProjectPreview from '@/components/projectPreview';
+import connectDB from "@/helpers/db";
+import Project from "@/database/portfolioSchema";
 
-export default function Portfolio(){
-    return(
-        <>
+async function getProjects() {
+  await connectDB();
+
+  try {
+    const projects = await Project.find().orFail();
+    return projects;
+  } catch (err) {
+    return null;
+  }
+}
+
+export default async function Portfolio() {
+  const projects = await getProjects();
+  if (projects) {
+    return (
+      <>
         <main>
-        <h1 className="page-title">Portfolio</h1>
-        <div className = "about animate">
-        <div className="project">
-          <Link href="/">
-            <Image src = {"/homepage.png"} width = {300} height = {500} alt ="Homepage"></Image>
-          </Link>
-          <div className="project-details">
-            <p className="project-name">My Personal Website</p>
-            <p className="project-description">A website showcasing my profile and projects.</p>
-            <Link href="/">Learn More</Link>
-          </div>
-        </div>
-        </div>
-      </main> 
+          <h1 className="page-title">Akhil's Portfolio</h1>
+          {projects.map((project) => (
+            <ProjectPreview
+              title={project.title}
+              description={project.description}
+              image={project.image}
+              slug={project.slug}
+            />
+          ))}
+        </main>
       </>
-    )
+    );
+  } else {
+    return (
+      <>
+        <main>
+          <h1>No Projects Found</h1>
+        </main>
+      </>
+    );
+  }
 }
