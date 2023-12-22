@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-# Milestone {num}
+# Milestone }
 
 ## Description
 
