@@ -1,13 +1,13 @@
 import React from 'react';
 import style from "./navbar.module.css";
-
+import Link from 'next/link';
 
 export default function Resume() {
     return (
     <>
         <main className = "main">
         <h1 className="page-title">Resume</h1>
-        <a href="resume.pdf" download>Download Resume</a>
+        <Link href="resume.pdf" download>Download Resume</Link>
         <div className = "about animate">
         <div className="resume">
             <section>

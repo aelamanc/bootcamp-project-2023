@@ -8,8 +8,6 @@ type Props = {
     project_description: string;
     project_link: string;
 
-
-
 }
 
 export default function PageTitle(props: Props) {

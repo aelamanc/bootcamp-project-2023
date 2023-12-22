@@ -15,7 +15,7 @@ export default function Portfolio(){
           <div className="project-details">
             <p className="project-name">My Personal Website</p>
             <p className="project-description">A website showcasing my profile and projects.</p>
-            <a href="/">Learn More</a>
+            <Link href="/">Learn More</Link>
           </div>
         </div>
         </div>
